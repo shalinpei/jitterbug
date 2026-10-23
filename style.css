@@ -1,0 +1,106 @@
+/* Colour tokens: change these to restyle the whole app. */
+:root {
+  --bg: #0f1220;
+  --panel: #181c30;
+  --text: #e8eaf6;
+  --muted: #9aa0c3;
+  --accent: #f5c04a;
+  --touch: 44px; /* minimum finger-sized target */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Mobile first: model on top, controls underneath. */
+.app {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100vh;
+  height: 100dvh; /* dvh accounts for mobile browser toolbars */
+}
+
+.viewer {
+  position: relative;
+  min-height: 0;
+  touch-action: none; /* dragging the model shouldn't scroll the page */
+}
+
+.viewer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+  background: var(--panel);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+}
+
+.shape-name {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: var(--touch);
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+button {
+  min-height: var(--touch);
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* Tablets and desktops: controls move to a sidebar on the right. */
+@media (min-width: 768px) {
+  .app {
+    grid-template-rows: none;
+    grid-template-columns: 1fr 300px;
+  }
+
+  .controls {
+    padding: 24px;
+  }
+}

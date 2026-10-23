@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jitterbug</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Import map: tells the browser where "three" lives. Pinned to an exact version. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <main class="app">
+    <div class="viewer" id="viewer" aria-label="3D jitterbug model. Drag to rotate, pinch or scroll to zoom."></div>
+
+    <section class="controls" aria-label="Controls">
+      <h1>Jitterbug</h1>
+      <p class="shape-name" id="shape-name" aria-live="polite">Cuboctahedron</p>
+
+      <label class="slider-label" for="twist">
+        <span>Open</span>
+        <span>Collapsed</span>
+      </label>
+      <input type="range" id="twist" min="0" max="1" step="0.001" value="0">
+
+      <button type="button" id="play" aria-pressed="false">Play</button>
+    </section>
+  </main>
+</body>
+</html>
